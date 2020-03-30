@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  registration_db:
+    image: postgres:10.11
+    container_name: registration_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=registration
+      - POSTGRES_PASSWORD=registration
+      - POSTGRES_DB=registration
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  registration_service:
+    container_name: registration_service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: registration:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - "JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:5005,suspend=n"
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - ./target/registration-service-0.0.1-SNAPSHOT.jar:/jar/registration-service.jar

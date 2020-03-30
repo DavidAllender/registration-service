@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="NewtonX" id="1">
+        <createTable tableName="course">
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="meeting_days" type="TEXT[]"/>
+            <column name="start_time" type="VARCHAR(255)"/>
+            <column name="end_time" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="course_prerequisite">
+            <column name="name" type = "VARCHAR(255)"/>
+            <column name="is_prerequisite_of" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="degree">
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="degree_requirement">
+            <column name="degree" type="VARCHAR(255)"/>
+            <column name="course" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="student">
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="major" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="transcript">
+            <column name="student" type="VARCHAR(255)"/>
+            <column name="course" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
